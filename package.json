@@ -1,0 +1,34 @@
+{
+  "name": "swt-root",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prettier:check": "pnpm prettier --config .prettierrc.json --check './apps/**/*.{ts,tsx,js,jsx}' './packages/**/*.{ts,tsx,js,jsx}' ",
+    "prettier:write": "pnpm prettier --config .prettierrc.json --write './apps/**/*.{ts,tsx,js,jsx}' './packages/**/*.{ts,tsx,js,jsx}' ",
+    "pm2:delete:all": "pm2 delete all",
+    "pm2:restart:all": "pm2 restart all",
+    "pm2:start:config": "pm2 start ecosystem.config.js",
+    "clear": "rm -rf node_modules && rm -rf ./package-lock.json && rm -rf pnpm-lock.yaml && pnpm store prune && pnpm -r exec -- rm -rf node_modules",
+    "copy:dist-to-example": "mkdir -p apps/example/script/dist && cp apps/swt/dist/index.js apps/example/script/dist/index.js",
+    "build:swt-and-copy-to-example": "pnpm --filter @dooboostore/swt bundle && pnpm run copy:dist-to-example",
+    "build-and-serve-example": "pnpm run build:swt-and-copy-to-example && pnpm --filter @dooboostore/swt/example/script start"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/**",
+    "apps/**"
+  ],
+  "pnpm": {
+    "shared-workspace-lockfile": true
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "pm2": "^6.0.6",
+    "prettier": "^3.3.3",
+    "typescript": "^5.9.2"
+  }
+}

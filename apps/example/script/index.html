@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Bed Index</title>
+    <script
+            id="swt" type="module" src="./dist/index.js"
+    ></script>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        div { padding: 5px; margin-bottom: 5px; border: 1px solid #eee; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        input[type="text"] { padding: 8px; margin: 5px; }
+        .section { border: 2px solid #ccc; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+<h1>Test Bed Index Page</h1>
+<nav>
+    <ul>
+        <li><a href="./index.html">Index Page</a></li>
+        <li><a href="./index1.html">Another Page</a></li>
+    </ul>
+</nav>
+
+<div class="section">
+    <h2>Basic Elements</h2>
+    <div data-swt-id="div-alpha">Alpha Div</div>
+    <div data-swt-id="div-beta">Beta Div</div>
+    <button data-swt-id="btn-submit">Submit Button</button>
+    <input type="text" data-swt-id="input-name" placeholder="Enter your name">
+</div>
+
+<div class="section">
+    <h2>Interactive Elements</h2>
+    <button data-swt-id="btn-toggle-visibility">Toggle Visibility</button>
+    <div data-swt-id="div-toggle" style="background-color: lightblue; padding: 10px;">
+        This div's visibility can be toggled.
+    </div>
+    <button data-swt-id="btn-change-id">Change ID</button>
+    <div data-swt-id="div-change-id">Original ID Div</div>
+</div>
+
+<div class="section">
+    <h2>Scrollable Content</h2>
+    <div style="height: 300px; overflow-y: scroll; border: 1px solid black;">
+        <p>Scroll down to see more content and trigger scroll events.</p>
+        <div style="height: 600px;">
+            <p>More content...</p>
+            <div data-swt-id="div-scroll-target" style="margin-top: 200px; background-color: lightgreen;">
+                Scroll Target Div
+            </div>
+            <p>Even more content...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('[data-swt-id="btn-toggle-visibility"]').addEventListener('click', function() {
+        const targetDiv = document.querySelector('[data-swt-id="div-toggle"]');
+        targetDiv.style.display = targetDiv.style.display === 'none' ? 'block' : 'none';
+    });
+
+    let idCounter = 0;
+    document.querySelector('[data-swt-id="btn-change-id"]').addEventListener('click', function() {
+        const targetDiv = document.querySelector('[data-swt-id="div-change-id"]');
+        targetDiv.dataset.swtId = `div-changed-${idCounter++}`;
+        targetDiv.textContent = `ID Changed to: ${targetDiv.dataset.swtId}`;
+    });
+</script>
+</body>
+</html>

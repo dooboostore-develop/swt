@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="header-row">
+        <h1 class="title">Element Event Heatmap</h1>
+        <div class="checkbox-group">
+            <select dr-event-change="@this@.onFilterChange($element.value)">
+                <option value="bind" selected>Bind</option>
+                <option value="unbind">Unbind</option>
+                <option value="visible">Visible</option>
+                <option value="invisible">Invisible</option>
+                <option value="click">Click</option>
+            </select>
+        </div>
+    </div>
+    <div class="chart-container">
+        <div class="chart"  dr-on-rendered-init="@this@.onRenderedChatContainer($element)"></div>
+    </div>
+</div>

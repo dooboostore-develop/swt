@@ -1,0 +1,222 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --white-color: #fff;
+    --sidebar-width: 250px;
+    --sidebar-collapsed-width: 0px;
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--light-color);
+    margin: 0;
+}
+
+header {
+    background-color: var(--white-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.hamburger-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--dark-color);
+    margin-right: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background-color: var(--white-color);
+    margin-right: 10px;
+}
+
+.refresh-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--dark-color);
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.filter-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.filter-btn .filter-count {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.sidebar {
+    background-color: var(--white-color);
+    box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+    height: 100vh;
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+}
+
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+}
+
+.sidebar nav {
+    margin-top: 80px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: var(--dark-color);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.sidebar nav ul li a i {
+    font-size: 20px;
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar nav ul li a .menu-text {
+    transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed nav ul li a .menu-text {
+    opacity: 0;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: var(--light-color);
+}
+
+main {
+    margin-left: var(--sidebar-width);
+    margin-top: 60px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+    height: calc(100vh - 60px);
+    box-sizing: border-box;
+}
+
+main.collapsed {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
+.root-container #flow-chart-container,
+.root-container #timeline-chart-container {
+    height: 400px;
+    width: 100%;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+pre {
+    background-color: var(--white-color);
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: var(--dark-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+table th, table td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: left;
+}
+
+table thead {
+    background-color: #e9ecef;
+}
+
+.clear-all-filters-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    margin-left: 5px;
+}
+
+.clear-all-filters-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+}

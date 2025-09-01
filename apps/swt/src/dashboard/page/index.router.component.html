@@ -1,0 +1,51 @@
+<header>
+    <div class="header-left">
+        <button class="hamburger-btn" dr-event-click="@this@.toggleSidebar()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <h1 dr-event-click="$router.go('/')">SWT Dashboard</h1>
+    </div>
+    <div class="header-right">
+        <select dr-event-change="@this@.onSessionChange($element, $event)">
+            <option value="">all</option>
+            <option dr-for-of="@this@.sessions" dr-value="#it#.id" dr-option-complete="@this@.onSessionChange()">
+                ${#it#.id}$
+            </option>
+        </select>
+        <button class="refresh-btn" dr-event-click="@this@.refreshData()">
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+        <button class="filter-btn" dr-event-click="@this@.openFilterDialog()">
+            <i class="fa-solid fa-filter"></i>
+            <span>Filters <span class="filter-count" dr-if="@this@.filters.length > 0">(${ @this@.filters.length }$)</span></span>
+        </button>
+        <button class="clear-all-filters-btn" dr-if="@this@.filters.length > 0" dr-event-click="@this@.onClearAllFilters()">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    </div>
+</header>
+<div class="sidebar" dr-if="!@this@.sidebarCollapsed">
+    <nav>
+        <ul>
+            <li><a dr-event-click="$router.go('/chart/path-flow')"><i class="fa-solid fa-gauge"></i> <span class="menu-text">Path Flow</span></a></li>
+            <li><a dr-event-click="$router.go('/chart/time-line')"><i class="fa-solid fa-timeline"></i></i> <span class="menu-text">Time Line</span></a></li>
+            <li><a dr-event-click="$router.go('/chart/event-distribution')"><i class="fa-solid fa-chart-bar"></i> <span class="menu-text">Event Distribution</span></a></li>
+            <li><a dr-event-click="$router.go('/chart/heatmap')"><i class="fa-solid fa-fire"></i> <span class="menu-text">Heatmap</span></a></li>
+            <li><a dr-event-click="$router.go('/chart/sankey-path-depth')"><i class="fa-solid fa-diagram-project"></i> <span class="menu-text">Sankey Path Depth</span></a></li>
+            <li><a dr-event-click="$router.go('/chart/error-log')"><i class="fa-solid fa-bug"></i> <span class="menu-text">Error Log</span></a></li>
+            <li><a dr-event-click="$router.go('/chart/session-replay')"><i class="fa-solid fa-play"></i> <span class="menu-text">Session Replay</span></a></li>
+            <li><a dr-event-click="$router.go('/about')"><i class="fa-solid fa-info-circle"></i> <span class="menu-text">About</span></a></li>
+        </ul>
+    </nav>
+    <iframe src="https://lazycollect.com/assets/swt/adfit/255x255.html" width="250" height="250" frameborder="0"></iframe>
+</div>
+<main class="root-container" dr-class="{collapsed:@this@.sidebarCollapsed}">
+    <dr-this if="@this@.sessions.length > 0" value="${@this@.child}$" onCreated="${(component)=>{@this@.onChangeChild(component)}}$"></dr-this>
+    <filter-dialog dr-if="@this@.isFilterDialogOpen"
+                   filters="${@this@.filters}$"
+                   dateFilter="${@this@.dateFilter}$"
+                   availableFields="${@this@.availableFields}$"
+                   availableOperators="${@this@.availableOperators}$"
+                   apply="${(newFilter, dateFilter) => @this@.onApplyFilters(newFilter, dateFilter)}$"
+                   cancel="${()=>@this@.closeFilterDialog()}$"></filter-dialog>
+</main>

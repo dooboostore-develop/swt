@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="header-container">
+        <h1>Session Replay</h1>
+    </div>
+    <div class="display-container">
+        <div class="status-bar">
+            <span>Session ID: ${@this@.currentSessionId}$</span>
+            <span>URL: ${@this@.currentUrl}$</span>
+        </div>
+        <div class="preview-wrapper">
+            <div class="display-canvas-container">
+                <canvas class="display-canvas" dr-on-rendered-init="@this@.onRenderedCanvas($element)"></canvas>
+            </div>
+            <div class="swt-elements-container">
+                <h3>SWT Elements</h3>
+                <div dr-for-of="@this@.currentSwtElements"
+                     class="swt-element-item"
+                     dr-style="{'border-color': #it#.visible ? 'blue' : 'grey'}">
+                    <div>ID: ${#it#.id}$</div>
+                    <div>Tag: ${#it#.tagName}$</div>
+                    <div>TargetSelector: ${#it#.targetSelector}$</div>
+                    <div>Rect: L:${#it#.rect.left.toFixed(0)}$, T:${#it#.rect.top.toFixed(0)}$, W:${#it#.rect.width.toFixed(0)}$, H:${#it#.rect.height.toFixed(0)}$</div>
+                    <div>Visible: ${#it#.visible}$</div> <!-- ADD THIS LINE -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="log-container">
+        <textarea readonly></textarea>
+    </div>
+    <div class="control-container">
+        <input type="range" min="0" value="0" dr-event-input="@this@.onSliderChange($element.value)">
+    </div>
+</div>

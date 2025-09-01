@@ -1,0 +1,4 @@
+[submodule "packages"]
+	path = packages
+	url = git@github.com:dooboostore-develop/packages.git
+	branch = main

@@ -1,0 +1,40 @@
+<div class="dialog-overlay" dr-event-click="@this@.onCancel()">
+    <div class="dialog-content" dr-event-click="$event.stopPropagation()">
+        <div class="dialog-header">
+            <h2>Session Filters</h2>
+            <button class="close-btn" dr-event-click="@this@.onCancel()">&times;</button>
+        </div>
+        <div class="dialog-body">
+            <div class="date-filter-section">
+                <label>Date:</label>
+                <input type="datetime-local" class="filter-value" placeholder="YYYY-MM-DD HH:mm:ss" dr-value-link="@this@.dateFilter.from">
+                <span>~</span>
+                <input type="datetime-local" class="filter-value" placeholder="YYYY-MM-DD HH:mm:ss" dr-value-link="@this@.dateFilter.to">
+                <button class="clear-date-filter-btn" dr-event-click="@this@.clearDateFilter()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <hr>
+            <div class="filter-rows-container">
+                <div class="filter-row" dr-for-of="@this@.localFilters" dr-let-i="index">
+                    <select class="filter-field" dr-event-change="#it#.field = $element.value">
+                        <option dr-for-of="@this@.availableFields" dr-value="#nearForOfIt#.path" dr-selected="#it#.field === #nearForOfIt#.path ? true : false">${#it#.name}$</option>
+                    </select>
+                    <select class="filter-operator" dr-event-change="#it#.operator = $element.value">
+                        <option dr-for-of="@this@.availableOperators" dr-value="#nearForOfIt#.value" dr-selected="#it#.operator ===  #nearForOfIt#.value ? true : false">${#it#.label}$</option>
+                    </select>
+
+                    <input  type="text" class="filter-value" dr-value="#it#.value" dr-event-input="#it#.value = $element.value" placeholder="Enter value..." dr-if="#it#.operator !== 'exists' && #it#.operator !== 'not_exists'">
+
+                    <button class="remove-filter-btn" dr-event-click="@this@.removeFilter(#index#)">-</button>
+                </div>
+            </div>
+            <div class="add-filter-control">
+                 <button class="add-filter-btn" dr-event-click="@this@.addFilter()">+ Add Filter</button>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn-clear-all" dr-event-click="@this@.onClearAll()">Clear All</button>
+            <button class="btn-cancel" dr-event-click="@this@.onCancel()">Cancel</button>
+            <button class="btn-apply" dr-event-click="@this@.onApply()">Apply</button>
+        </div>
+    </div>
+</div>

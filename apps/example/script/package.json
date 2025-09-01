@@ -1,0 +1,15 @@
+{
+  "name": "@dooboostore/swt/example/script",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server --cors -p 8080 ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

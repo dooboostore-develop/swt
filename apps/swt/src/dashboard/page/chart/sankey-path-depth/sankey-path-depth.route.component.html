@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="header-row">
+        <h1 class="title">Path Depth Sankey Diagram</h1>
+        <div class="select-group">
+            <select dr-event-change="@this@.onDepthChange($element.value)">
+                <option value="deeper" selected>Deeper</option>
+                <option value="back">Back</option>
+                <option value="equals">Equals</option>
+            </select>
+        </div>
+    </div>
+    <div class="chart-container">
+        <div class="chart"  dr-on-rendered-init="@this@.onRenderedChatContainer($element)"></div>
+    </div>
+</div>

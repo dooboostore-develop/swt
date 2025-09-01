@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="title-container">
+        <h1 class="title">Time Line</h1>
+        <button class="export-button" dr-event-click="@this@.exportToCsv()">Export to CSV</button>
+    </div>
+    <div class="chart-container">
+        <div class="chart"  dr-on-rendered-init="@this@.onRenderedChatContainer($element)"></div>
+    </div>
+    <div class="rawdata-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Letter</th>
+                    <th>DataSet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dr-for-of="@this@.flagDatas">
+                    <td>${#it#.category}$</td>
+                    <td>${#it#.dateISO}$</td>
+                    <td>${#it#.letter}$</td>
+                    <td><textarea>${JSON.stringify(#it#.data)}$</textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
